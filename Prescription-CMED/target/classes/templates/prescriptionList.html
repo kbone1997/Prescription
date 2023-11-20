@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prescriptions list</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav th:replace="~{base :: content}">
+    </nav>
+    <div class="container mt-5">
+        <h1>Prescriptions</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Diagnosis</th>
+                    <th>Next Appointment</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Iterate over prescriptions and display each prescription -->
+                <tr th:each="prescription : ${prescriptions}">
+                    <td th:text="${prescription.id}"></td>
+                    <td th:text="${#dates.format(prescription.date, 'yyyy-MM-dd')}"></td>
+                    <td th:text="${prescription.name}"></td>
+                    <td th:text="${prescription.age}"></td>
+                    <td th:text="${prescription.gender}"></td>
+                    <td th:text="${prescription.diagnosis}"></td>
+                    <td th:text="${#dates.format(prescription.nextdate, 'yyyy-MM-dd')}"></td>
+                    <td> 🛠️ 🗑️</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js (if needed) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-GLhlTQ8iK7Jo9Wr+3TR/d5Ut2paaEblGFpzX8b+O6CVMp0/pqBD9P6I9I5m9aaJb"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
